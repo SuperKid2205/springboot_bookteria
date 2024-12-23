@@ -1,1 +1,2 @@
-# springboot_bookteria
+# bookteria
+The bookteria project, a book social network
