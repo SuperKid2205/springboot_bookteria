@@ -26,7 +26,7 @@ public class UserProfileService {
     }
 
     public UserProfileResponse getProfile(String id) {
-        UserProfile userProfile = userRepository.findById(id).orElseThrow(
+        UserProfile userProfile = userRepository.findByUserId(id).orElseThrow(
                 () -> new RuntimeException("Profile not found")
         );
 
