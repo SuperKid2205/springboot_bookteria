@@ -1,4 +1,4 @@
-package com.devteria.profile.dto.response;
+package com.hung.practice.dto.response;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,6 @@ import java.time.LocalDate;
 public class UserProfileResponse {
     String id;
     String userId;
-    String username;
     String firstName;
     String lastName;
     LocalDate dob;

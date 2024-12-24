@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import com.hung.practice.mapper.ProfileMapper;
+import com.hung.practice.repository.httpclient.ProfileClient;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,6 +38,8 @@ public class UserService {
     RoleRepository roleRepository;
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
+    ProfileClient profileClient;
+    ProfileMapper profileMapper;
 
     public List<UserResponse> getUsers() {
         return userRepository.findAll().stream().map(userMapper::toUserResponse).toList();
@@ -85,7 +89,16 @@ public class UserService {
         }
 
         // Save
-        return userMapper.toUserResponse(userRepository.save(userEntity));
+        UserEntity savedUser = userRepository.save(userEntity);
+
+        // Create User profile
+        var profileRequest =  profileMapper.toProfileCreationRequest(request);
+        profileRequest.setUserId(savedUser.getId());
+
+        profileClient.createProfile(profileRequest);
+
+        // Mapping
+        return userMapper.toUserResponse(savedUser);
     }
 
     @PostAuthorize("hasRole('ADMIN') or returnObject.username == authentication.name")
