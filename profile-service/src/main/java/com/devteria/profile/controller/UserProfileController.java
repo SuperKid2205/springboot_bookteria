@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -23,5 +25,10 @@ public class UserProfileController {
     @GetMapping("/{profileId}")
     UserProfileResponse getProfile(@PathVariable String profileId) {
         return userProfileService.getProfile(profileId);
+    }
+
+    @GetMapping
+    List<UserProfileResponse> getProfiles() {
+        return userProfileService.getAllProfiles();
     }
 }
