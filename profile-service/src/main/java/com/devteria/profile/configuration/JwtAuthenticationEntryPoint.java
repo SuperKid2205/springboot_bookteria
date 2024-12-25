@@ -1,8 +1,8 @@
-package com.hung.practice.configuration;
+package com.devteria.profile.configuration;
 
+import com.devteria.profile.dto.response.ApiResponse;
+import com.devteria.profile.enums.ErrorCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hung.practice.dto.response.ApiResponse;
-import com.hung.practice.enums.ErrorCode;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.MediaType;

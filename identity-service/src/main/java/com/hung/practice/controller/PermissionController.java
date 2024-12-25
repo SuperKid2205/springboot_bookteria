@@ -2,6 +2,9 @@ package com.hung.practice.controller;
 
 import java.util.List;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
 import com.hung.practice.dto.request.PermissionRequest;
@@ -14,13 +17,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/permissions")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PermissionController {
 
-    private PermissionService permissionService;
-
-    public PermissionController(PermissionService permissionService) {
-        this.permissionService = permissionService;
-    }
+    PermissionService permissionService;
 
     @GetMapping
     public ApiResponse<List<PermissionResponse>> getPermissions() {

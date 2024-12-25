@@ -1,4 +1,4 @@
-package com.hung.practice.configuration;
+package com.devteria.profile.configuration;
 
 import com.nimbusds.jwt.SignedJWT;
 import lombok.AccessLevel;
