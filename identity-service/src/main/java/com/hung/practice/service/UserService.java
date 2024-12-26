@@ -1,17 +1,5 @@
 package com.hung.practice.service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import com.hung.practice.mapper.ProfileMapper;
-import com.hung.practice.repository.httpclient.ProfileClient;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import com.hung.practice.dto.request.UserCreationRequest;
 import com.hung.practice.dto.request.UserUpdateRequest;
 import com.hung.practice.dto.response.UserResponse;
@@ -19,14 +7,24 @@ import com.hung.practice.entity.Role;
 import com.hung.practice.entity.UserEntity;
 import com.hung.practice.enums.ErrorCode;
 import com.hung.practice.exception.AppException;
+import com.hung.practice.mapper.ProfileMapper;
 import com.hung.practice.mapper.UserMapper;
 import com.hung.practice.repository.RoleRepository;
 import com.hung.practice.repository.UserRepository;
-
+import com.hung.practice.repository.httpclient.ProfileClient;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -95,9 +93,9 @@ public class UserService {
         var profileRequest =  profileMapper.toProfileCreationRequest(request);
         profileRequest.setUserId(savedUser.getId());
 
+        // Mapping
         profileClient.createProfile(profileRequest);
 
-        // Mapping
         return userMapper.toUserResponse(savedUser);
     }
 
