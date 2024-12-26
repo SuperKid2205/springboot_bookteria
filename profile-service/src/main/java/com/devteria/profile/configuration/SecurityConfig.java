@@ -1,6 +1,5 @@
 package com.devteria.profile.configuration;
 
-import com.devteria.profile.constant.RequestEndpoint;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -31,7 +30,7 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(
                 request -> request
                         // Non-authenticate
-                        .requestMatchers(HttpMethod.POST, RequestEndpoint.USER + "/registration")
+                        .requestMatchers(HttpMethod.POST, "/internal/users")
                         .permitAll()
 
                         // ADMIN
